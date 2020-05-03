@@ -83,6 +83,16 @@ function mostrar(compra) {
 }
 
 function pagar (){
+	var maximo = $("#maximo").val();
+	var monto = $("#pago").val();
+	console.log(monto);
+	console.log(maximo);
+	
+	if(monto ="" || monto <= 0 ){
+		display_msg('Ingrese una cantidad valida','error');
+		$("#pago").focus();
+		return false;
+	}
 	var parametros = $("#form_pago").serialize();
 	$.ajax({
 					type: "POST",
@@ -92,8 +102,13 @@ function pagar (){
 					//	$("#resultados_ajax").html("Mensaje: Cargando...");
 					  },
 					success: function(datos){
-					display_msg(datos,'success');
+						if(datos == true){
+							display_msg("pago realizado correctamente",'success');
 					setTimeout('document.location.reload()',2000);
+						}else{
+							display_msg("Cantidad excede el monto maximo",'error');
+						}
+					
 				  }
 			});
 }

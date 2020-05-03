@@ -299,5 +299,26 @@ if($tipo_pago == 1 ) {
 $status_compra = ($tipo_pago == 1)  ? 'Total' : 'Parcial';
 $insert=$db->query( "INSERT INTO compras (numero_compra,fecha_compra,id_proveedor,costo_total_compra,pagado,metodo_pago,suc_id,status_compra) VALUES ('$numero_factura','$fecha_factura','$id_prov','$total_factura','$pagado','$condiciones','$id_sucursal','$status_compra')");
 
+//insertar pago
+switch ($condiciones) {
+	case 1:
+		$metodo_pago = "Efectivo";
+		break;
+	case 2:
+		$metodo_pago = "Cheque";
+		break;
+	case 3:
+		$metodo_pago = "Transferencia Bancaria";
+		break;
+	
+		
+}
+$sql= "INSERT INTO pagos(num_compra,monto_pagado,fecha_pago,id_usuario,id_sucursal,metodo_pago) ";
+
+    $sql.= "VALUES ($numero_factura,$pagado,'{$fecha_factura}',$session_id,$id_sucursal,'{$metodo_pago}')";
+    $db->query($sql);
+
+
+
 $delete=$db->query("DELETE FROM tmp_compra WHERE session_id_compra='".$session_id."'");
 ?>

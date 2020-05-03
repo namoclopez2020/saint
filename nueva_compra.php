@@ -66,7 +66,7 @@ $page_title = 'Nueva factura';
 									<option value="1">Efectivo</option>
 									<option value="2">Cheque</option>
 									<option value="3">Transferencia bancaria</option>
-									<option value="4">Crédito</option>
+								
 								</select>
 							
 			</div>

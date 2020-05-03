@@ -20,6 +20,7 @@ endforeach;
            <div class="form-group">
            
                 <label for="pago">Cantidad a pagar</label>
+                <input type="hidden" class="form-control form-control-sm" name="maximo" id="maximo" value="<?php echo $monto ?>"> 
                 <input type="number" class="form-control form-control-sm" name="pago" id="pago" value="<?php echo $monto ?>"> 
            </div>
            <div class="form-group">
@@ -29,7 +30,7 @@ endforeach;
 									<option value="1">Efectivo</option>
 									<option value="2">Cheque</option>
 									<option value="3">Transferencia bancaria</option>
-									<option value="4">Crédito</option>
+									
 								</select>
            </div>
            <div class="form-group mt-3">
