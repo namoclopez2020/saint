@@ -1,5 +1,5 @@
 <div class="modal" id="myModalcompras" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-body">
                 <div class="col-sm-16">
@@ -10,7 +10,7 @@
                                 <a href="#" data-action="reload">
                                     <i class="ace-icon fa fa-refresh"></i>
                                 </a>
-                                <a href="#" data-action="collapse">
+                                <a href="compras.php" data-action="collapse">
                                     <i class="ace-icon fa fa-chevron-up"></i>
                                 </a>
                             </div>

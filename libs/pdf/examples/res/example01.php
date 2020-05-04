@@ -229,7 +229,7 @@ while ($row=$db->fetch_array($sql))
 		$costo_actual = dinero($costo_compra/$cantidad_und);
 		}
 		$costo_promedio =dinero( ($costo_anterior+$costo_actual)/2);
-		$actualizar="UPDATE products set costo_anterior=$costo_anterior , costo_actual=$costo_actual , costo_promedio=$costo_promedio where id_producto=$id_producto";
+		$actualizar="UPDATE products set costo_anterior='{$costo_anterior}' , costo_actual='{$costo_actual}' , costo_promedio='{$costo_promedio}' where id_producto='$id_producto'";
 		$db->query($actualizar);
 	}
 	
