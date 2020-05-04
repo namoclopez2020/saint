@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-05-2020 a las 18:48:09
+-- Tiempo de generación: 04-05-2020 a las 17:13:15
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.3.13
 
@@ -167,7 +167,7 @@ INSERT INTO `cliente` (`id_cliente`, `nombre_cliente`, `telefono_cliente`, `dni_
 
 CREATE TABLE `compras` (
   `id_compra` int(11) NOT NULL,
-  `numero_compra` int(10) NOT NULL,
+  `numero_compra` int(11) NOT NULL,
   `id_proveedor` int(11) NOT NULL,
   `costo_total_compra` double NOT NULL,
   `pagado` varchar(10) NOT NULL,
@@ -182,21 +182,8 @@ CREATE TABLE `compras` (
 --
 
 INSERT INTO `compras` (`id_compra`, `numero_compra`, `id_proveedor`, `costo_total_compra`, `pagado`, `fecha_compra`, `metodo_pago`, `suc_id`, `status_compra`) VALUES
-(103, 1, 5, 20100, '20100.00', '2020-05-01 00:00:00', '1', 4, 'Total'),
-(104, 2, 1, 34, '34.00', '2020-05-12 00:00:00', '1', 4, 'Total'),
-(105, 3, 1, 67, '67.00', '2020-05-20 00:00:00', '1', 4, 'Total'),
-(106, 4, 1, 34, '34.00', '2020-05-20 00:00:00', '1', 4, 'Total'),
-(107, 5, 1, 70, '70.00', '2020-05-28 00:00:00', '1', 4, 'Total'),
-(108, 6, 1, 2, '2.00', '2020-05-27 00:00:00', '1', 4, 'Total'),
-(109, 7, 4, 1, '1.00', '2020-05-26 00:00:00', '1', 4, 'Total'),
-(110, 8, 4, 2, '2.00', '2020-06-03 00:00:00', '1', 4, 'Total'),
-(111, 9, 4, 30, '30.00', '2020-06-03 00:00:00', '1', 4, 'Total'),
-(112, 10, 1, 100, '100.00', '2020-05-27 00:00:00', '1', 4, 'Total'),
-(113, 11, 1, 450, '450.00', '2020-05-19 00:00:00', '1', 4, 'Total'),
-(114, 12, 5, 1200, '1200.00', '2020-05-27 00:00:00', '1', 4, 'Total'),
-(115, 13, 1, 300, '300.00', '2020-05-30 00:00:00', '1', 4, 'Total'),
-(116, 14, 1, 32, '32.00', '2020-05-27 00:00:00', '1', 4, 'Total'),
-(117, 15, 1, 2, '1', '2020-06-04 00:00:00', '1', 4, 'Parcial');
+(119, 1, 1, 12000, '12000', '2020-05-03 00:00:00', '1', 4, 'Total'),
+(120, 2, 5, 2300, '2300', '1969-12-31 19:00:00', '1', 4, 'Total');
 
 -- --------------------------------------------------------
 
@@ -218,22 +205,8 @@ CREATE TABLE `detalle_compra` (
 --
 
 INSERT INTO `detalle_compra` (`id_detalle_comp`, `num_compra`, `id_producto_compra`, `cant_paq`, `cant_und`, `costo_compra`) VALUES
-(117, 1, 51, '', '10', 20100),
-(118, 2, 51, '', '4', 34),
-(119, 3, 51, '', '6', 67),
-(120, 4, 51, '', '3', 34),
-(121, 5, 51, '', '2', 70),
-(122, 6, 51, '', '1', 2),
-(123, 7, 51, '', '1', 1),
-(124, 8, 51, '', '1', 2),
-(125, 9, 51, '', '3', 30),
-(126, 10, 51, '', '5', 100),
-(127, 11, 52, '2', '5', 450),
-(128, 12, 52, '4', '2', 1200),
-(129, 13, 52, '2', '2', 300),
-(130, 14, 51, '', '3', 30),
-(131, 14, 52, '2', '3', 2),
-(132, 15, 52, '0', '1', 2);
+(134, 1, 56, '', '10', 12000),
+(135, 2, 56, '', '3', 2300);
 
 -- --------------------------------------------------------
 
@@ -295,22 +268,8 @@ CREATE TABLE `detalle_producto` (
 --
 
 INSERT INTO `detalle_producto` (`id_detalle`, `numero_compra`, `id_producto`, `fecha_agregado`, `paq`, `und`, `id_proveedor`, `estado`) VALUES
-(9, 1, 51, '2020-05-01 00:00:00', '', '10', 5, 'vigente'),
-(10, 2, 51, '2020-05-12 00:00:00', '', '4', 1, 'vigente'),
-(11, 3, 51, '2020-05-20 00:00:00', '', '6', 1, 'vigente'),
-(12, 4, 51, '2020-05-20 00:00:00', '', '3', 1, 'en espera'),
-(13, 5, 51, '2020-05-28 00:00:00', '', '2', 1, 'en espera'),
-(14, 6, 51, '2020-05-27 00:00:00', '', '1', 1, 'en espera'),
-(15, 7, 51, '2020-05-26 00:00:00', '', '1', 4, 'en espera'),
-(16, 8, 51, '2020-06-03 00:00:00', '', '1', 4, 'en espera'),
-(17, 9, 51, '2020-06-03 00:00:00', '', '3', 4, 'en espera'),
-(18, 10, 51, '2020-05-27 00:00:00', '', '5', 1, 'en espera'),
-(19, 11, 52, '2020-05-19 00:00:00', '2', '5', 1, 'vigente'),
-(20, 12, 52, '2020-05-27 00:00:00', '4', '2', 5, 'vigente'),
-(21, 13, 52, '2020-05-30 00:00:00', '2', '2', 1, 'vigente'),
-(22, 14, 51, '2020-05-27 00:00:00', '', '3', 1, 'en espera'),
-(23, 14, 52, '2020-05-27 00:00:00', '2', '3', 1, 'vigente'),
-(24, 15, 52, '2020-06-04 00:00:00', '0', '1', 1, 'vigente');
+(26, 1, 56, '2020-05-03 00:00:00', '', '10', 1, 'vigente'),
+(27, 2, 56, '1969-12-31 19:00:00', '', '3', 5, 'vigente');
 
 -- --------------------------------------------------------
 
@@ -394,6 +353,34 @@ CREATE TABLE `movimientos` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `pagos`
+--
+
+CREATE TABLE `pagos` (
+  `id` int(11) NOT NULL,
+  `num_compra` int(11) NOT NULL,
+  `monto_pagado` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `fecha_pago` datetime NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `id_sucursal` int(11) NOT NULL,
+  `metodo_pago` varchar(11) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `pagos`
+--
+
+INSERT INTO `pagos` (`id`, `num_compra`, `monto_pagado`, `fecha_pago`, `id_usuario`, `id_sucursal`, `metodo_pago`) VALUES
+(24, 1, '5000', '2020-05-03 00:00:00', 1, 4, 'Efectivo'),
+(25, 1, '1', '2020-05-03 20:58:54', 1, 4, 'Efectivo'),
+(26, 1, '6999', '2020-05-03 21:00:01', 1, 4, 'Cheque'),
+(27, 2, '1670', '1969-12-31 19:00:00', 1, 4, 'Efectivo'),
+(28, 2, '2', '2020-05-03 22:21:37', 1, 4, 'Transferenc'),
+(29, 2, '628', '2020-05-03 22:23:18', 1, 4, 'Cheque');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `producto_proveedor`
 --
 
@@ -407,13 +394,8 @@ CREATE TABLE `producto_proveedor` (
 --
 
 INSERT INTO `producto_proveedor` (`id_producto`, `id_proveedor`) VALUES
-(51, 4),
-(51, 5),
-(52, 4),
-(52, 5),
-(53, 4),
-(54, 5),
-(55, 1);
+(56, 1),
+(56, 4);
 
 -- --------------------------------------------------------
 
@@ -449,11 +431,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id_producto`, `nombre_producto`, `codigo_producto`, `costo_anterior`, `costo_promedio`, `costo_actual`, `precio1`, `precio2`, `precio3`, `categorie_id`, `fecha_creado`, `es_serial`, `id_almacen`, `impuesto`, `usa_empaque`, `medida_paq`, `medida_und`, `fraccion`, `stock_paq`, `stock_und`) VALUES
-(51, 'huawei p20 pro', '001', '200', '109', '18', '1200', '1100', '1500', 52, '2020-05-01 20:05:38', 1, 4, '', 0, '', 'und', '', '', '39'),
-(52, 'prueba empaque', '002', '28.5714285', '21.11', '13.64', '400', '400', '400', 50, '2020-05-02 12:13:04', 0, 4, '', 1, 'paq', 'und', '10', '11', '3'),
-(53, 'asdasd', 'sadasd', '2', '2', '2', '2', '2', '2', 50, '2020-05-02 18:36:06', 0, 4, '18', 1, 'paq', 'und', '111', NULL, NULL),
-(54, 'vvv', 'vvv', '5', '5', '5', '5', '5', '5', 50, '2020-05-02 18:36:50', 0, 4, '', 1, 'paq', 'und', '22', NULL, NULL),
-(55, 'jjjjj', 'jjj', '2', '2', '2', '2', '2', '2', 50, '2020-05-02 18:37:23', 1, 4, '', 0, '', 'und', '', NULL, NULL);
+(56, 'huawei p20 128gb', '001', '900', '800', '670', '1670', '1620', '1650', 52, '2020-05-03 20:54:20', 1, 5, '', 0, '', 'und', '', '', '13');
 
 -- --------------------------------------------------------
 
@@ -497,26 +475,19 @@ CREATE TABLE `seriales` (
 --
 
 INSERT INTO `seriales` (`id_serial`, `id_detalle_prod`, `serial_number`, `status`) VALUES
-(31, 9, '12345678912', 'Vigente'),
-(32, 9, '22233322244', 'Vigente'),
-(33, 9, '88877744839', 'Vigente'),
-(34, 9, '47384950394', 'Vigente'),
-(35, 9, '48374859221', 'Vigente'),
-(36, 9, '38383838383', 'Vigente'),
-(37, 9, '11111111111', 'Vigente'),
-(38, 9, '12312312312', 'Vigente'),
-(39, 9, '98765432123', 'Vigente'),
-(40, 9, '38493049304', 'Vigente'),
-(41, 10, 'gggg', 'Vigente'),
-(42, 10, 'gggggg', 'Vigente'),
-(43, 10, 'fgfdgdfg', 'Vigente'),
-(44, 10, '454545345', 'Vigente'),
-(46, 11, '54545', 'Vigente'),
-(47, 11, '3434', 'Vigente'),
-(48, 11, '34343', 'Vigente'),
-(49, 11, '7878', 'Vigente'),
-(50, 11, '9898', 'Vigente'),
-(52, 11, 'sdadasdbbb', 'Vigente');
+(53, 26, '123123123', 'Vigente'),
+(54, 26, '345435', 'Vigente'),
+(55, 26, '767675', 'Vigente'),
+(56, 26, '454545', 'Vigente'),
+(57, 26, '43343', 'Vigente'),
+(58, 26, '878765', 'Vigente'),
+(59, 26, '8978987', 'Vigente'),
+(60, 26, '234234365', 'Vigente'),
+(61, 26, '756756', 'Vigente'),
+(62, 26, '987987456', 'Vigente'),
+(63, 27, '12121', 'Vigente'),
+(64, 27, '76000', 'Vigente'),
+(65, 27, '0989', 'Vigente');
 
 -- --------------------------------------------------------
 
@@ -579,7 +550,7 @@ CREATE TABLE `tmp_compra` (
 --
 
 CREATE TABLE `users` (
-  `id` int(11) UNSIGNED NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(60) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
@@ -595,7 +566,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `user_level`, `image`, `status`, `last_login`, `id_sucursal`) VALUES
-(1, 'Administrador', 'Admin', 'd4e8e6deaa7b1f8381e09e3e6b83e36f0b681c5c', 1, 'm318llg1.jpg', 1, '2020-05-03 11:18:39', 4),
+(1, 'Administrador', 'Admin', 'd4e8e6deaa7b1f8381e09e3e6b83e36f0b681c5c', 1, 'm318llg1.jpg', 1, '2020-05-03 22:15:04', 4),
 (2, 'Special User', 'Special', 'ba36b97a41e7faf742ab09bf88405ac04f99599a', 2, 'no_image.jpg', 1, '2019-07-23 00:54:30', 0),
 (3, 'Default User', 'User', '12dea96fec20593566ab75692c9949596833adc9', 3, 'no_image.jpg', 1, '2020-05-01 13:15:29', 5),
 (18, 'Dani JosÃ© Colmenares Cadiz ', 'Dani', '1cf2810c459c3dac44a311ace33fb298d334e307', 1, 'no_image.jpg', 1, '2020-03-24 20:28:51', 4);
@@ -649,7 +620,8 @@ ALTER TABLE `cliente`
 -- Indices de la tabla `compras`
 --
 ALTER TABLE `compras`
-  ADD PRIMARY KEY (`id_compra`);
+  ADD PRIMARY KEY (`id_compra`),
+  ADD UNIQUE KEY `numero_compra` (`numero_compra`);
 
 --
 -- Indices de la tabla `detalle_compra`
@@ -710,6 +682,15 @@ ALTER TABLE `media`
 --
 ALTER TABLE `movimientos`
   ADD PRIMARY KEY (`id_movimiento`);
+
+--
+-- Indices de la tabla `pagos`
+--
+ALTER TABLE `pagos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_id_user_pago` (`id_usuario`),
+  ADD KEY `FK_id_sucursal_pago` (`id_sucursal`),
+  ADD KEY `FK_numero_compra_pago` (`num_compra`);
 
 --
 -- Indices de la tabla `producto_proveedor`
@@ -798,13 +779,13 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de la tabla `compras`
 --
 ALTER TABLE `compras`
-  MODIFY `id_compra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
+  MODIFY `id_compra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_compra`
 --
 ALTER TABLE `detalle_compra`
-  MODIFY `id_detalle_comp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
+  MODIFY `id_detalle_comp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_factura`
@@ -822,7 +803,7 @@ ALTER TABLE `detalle_movimiento`
 -- AUTO_INCREMENT de la tabla `detalle_producto`
 --
 ALTER TABLE `detalle_producto`
-  MODIFY `id_detalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_detalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `egreso`
@@ -849,10 +830,16 @@ ALTER TABLE `movimientos`
   MODIFY `id_movimiento` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4518;
 
 --
+-- AUTO_INCREMENT de la tabla `pagos`
+--
+ALTER TABLE `pagos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
 -- AUTO_INCREMENT de la tabla `products`
 --
 ALTER TABLE `products`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
@@ -864,7 +851,7 @@ ALTER TABLE `proveedor`
 -- AUTO_INCREMENT de la tabla `seriales`
 --
 ALTER TABLE `seriales`
-  MODIFY `id_serial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id_serial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT de la tabla `sucursales`
@@ -882,13 +869,13 @@ ALTER TABLE `tmp`
 -- AUTO_INCREMENT de la tabla `tmp_compra`
 --
 ALTER TABLE `tmp_compra`
-  MODIFY `id_tmp_compra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `id_tmp_compra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `user_groups`
@@ -911,6 +898,14 @@ ALTER TABLE `detalle_producto`
 --
 ALTER TABLE `general_data`
   ADD CONSTRAINT `general_data_ibfk_1` FOREIGN KEY (`sucursal`) REFERENCES `sucursales` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `pagos`
+--
+ALTER TABLE `pagos`
+  ADD CONSTRAINT `pagos_ibfk_2` FOREIGN KEY (`id_sucursal`) REFERENCES `sucursales` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pagos_ibfk_3` FOREIGN KEY (`id_usuario`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pagos_ibfk_4` FOREIGN KEY (`num_compra`) REFERENCES `compras` (`numero_compra`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `producto_proveedor`
