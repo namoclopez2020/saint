@@ -47,7 +47,7 @@ endforeach;
      <?php include('layouts/nav_page.php')?>
 <div class="container mt-4 pt-4">
 <div class="row">
-<div class="col-5">
+<div class="col-12 col-md-5">
 <div class="card">
 <div class="card-header">Agregar Serial</div>
 <div class="card-body">
@@ -62,7 +62,7 @@ endforeach;
 </div>
 </div>
 </div>
-<div class="col-7">
+<div class="col-12 col-md-7">
     <div class="card">
          <div class="card-header">
          Lista de Seriales de "<?php echo $nombre_producto?>"

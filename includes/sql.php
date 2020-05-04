@@ -382,6 +382,15 @@ return $sucursal;
         endif;
 
      }
+  function find_pagos($numero_compra){
+    global $db;
+    $numero_compra = remove_junk($db->escape($numero_compra));
+    $sql = "SELECT p.id,u.name,p.monto_pagado,p.fecha_pago,p.metodo_pago FROM pagos as p ";
+    $sql.="INNER JOIN users as u ON P.id_usuario = u.id WHERE p.num_compra = $numero_compra ";
+    $sql.="GROUP BY p.id ";
+    return find_by_sql($sql);
+  }
+
   function es_empaque($id_producto){
     
     global $db;
@@ -760,8 +769,11 @@ function sumar_stock($cantidad_paq,$cantidad_und,$id_producto){
 function join_compras_table($id_sucursal){
   global $db;
   $id_sucursal = remove_junk($db->escape($id_sucursal));
-  $sql = "SELECT c.numero_compra,c.costo_total_compra,c.pagado,DATE_FORMAT(c.fecha_compra, '%d/%m/%Y') AS fecha,c.metodo_pago,
-  c.status_compra from compras as c where c.suc_id=$id_sucursal";
+  $sql = "SELECT p.nombre,c.numero_compra,c.costo_total_compra,c.pagado,DATE_FORMAT(c.fecha_compra, '%d/%m/%Y')
+   AS fecha,c.metodo_pago, ";
+   $sql.="c.status_compra from compras as c INNER JOIN proveedor as p ";
+   $sql.="ON c.id_proveedor = p.idproveedor ";
+   $sql.="where c.suc_id=$id_sucursal";
    return find_by_sql($sql);
 }
 function find_sale_by_dates_v2($start_date,$end_date){

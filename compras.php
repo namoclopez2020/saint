@@ -32,6 +32,7 @@
 							<tr  class="info">
 					<th>#</th>
 					<th>Fecha</th>
+					<th>Proveedor</th>
 					<th>Medio de Pago</th>
 					<th>Estado</th>
 					<th>Cantidad pagada</th>
@@ -45,6 +46,7 @@
 					<tr>
 					<td><?php echo $compras['numero_compra']?></td>
 					<td><?php echo $compras['fecha']?></td>
+					<td><?php echo ucwords($compras['nombre'])?></td>
 					<td><?php 
 					switch ($compras['metodo_pago']) {
     			case 1:

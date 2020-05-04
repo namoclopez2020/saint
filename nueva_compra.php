@@ -204,14 +204,9 @@ $page_title = 'Nueva factura';
  
    </div>
    
-	<!--<div class="container-fluid" style="padding-top: 50px" id="resultados">
-			
-		 </div>-->
-		
 	
-		 <?php 
-			include("modal/buscar_productos_compra.php");
-		?>
+	
+		
 	<?php include_once('layouts/footer.php'); ?>
 	<script type="text/javascript" src="./libs/js/VentanaCentrada.js"></script>
 	<script src="./libs/js/nueva_compra.js"></script>
