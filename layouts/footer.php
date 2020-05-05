@@ -44,6 +44,8 @@
     <script src="./libs/vendor/datatable-responsive-input/datatables.min.js"></script>
     <script src="./libs/js/tables-datatable.js"></script>
   
+    <!--sweet alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <!-- Main File-->
     <script src="./libs/js/front.js"></script>
 
