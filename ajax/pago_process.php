@@ -49,7 +49,7 @@ else{
     endforeach;
     
     if($monto_restante == 0){
-        $sql_estado="UPDATE compras set status_compra = 'Total'";
+        $sql_estado="UPDATE compras set status_compra = 'Total' where numero_comora=$numero_compra";
         $db->query($sql_estado);
     }
     echo true;
