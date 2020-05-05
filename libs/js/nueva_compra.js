@@ -110,7 +110,9 @@
 
 		}
 		
-		$("#datos_compra").submit(function(){
+		$("#datos_compra").submit(function(event){
+			event.preventDefault();
+			var opcion = false;
 		  var id_proveedor = $("#id_proveedor").val();
 		 // var id_vendedor = $("#id_vendedor").val();
 		  var condiciones = $("#condiciones").val();
@@ -183,8 +185,41 @@
 			  $("#nombre_proveedor").focus();
 			 return false;
 		  }
-		  var opcion = actualizar_precio();
-		 VentanaCentrada('./libs/pdf/examples/comprobante_compra.php?fecha='+fecha+'&prov='+id_proveedor+'&condiciones='+condiciones+'&tipo_pago='+tipo_pago+'&pagado='+pagado+'&actualizar='+opcion,'Factura','','800','600','true');
+		  
+		  const swalWithBootstrapButtons = Swal.mixin({
+			customClass: {
+			  confirmButton: 'btn btn-success',
+			  cancelButton: 'btn btn-danger mr-2'
+			},
+			buttonsStyling: false
+		  })
+		  
+		  swalWithBootstrapButtons.fire({
+			title: '¿ Desea actualizar los costos de los productos ?',
+			text: "Esta acción no se podra revertir",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonText: 'Si',
+			cancelButtonText: 'No',
+			reverseButtons: true
+		  }).then((result) => {
+			if (result.value) {
+			   opcion = true;
+				
+				VentanaCentrada('./libs/pdf/examples/comprobante_compra.php?fecha='+fecha+'&prov='+id_proveedor+'&condiciones='+condiciones+'&tipo_pago='+tipo_pago+'&pagado='+pagado+'&actualizar='+opcion,'Factura','','800','600','true');
+			} else if (
+			  /* Read more about handling dismissals below */
+			  result.dismiss === Swal.DismissReason.cancel
+			) {
+				
+				VentanaCentrada('./libs/pdf/examples/comprobante_compra.php?fecha='+fecha+'&prov='+id_proveedor+'&condiciones='+condiciones+'&tipo_pago='+tipo_pago+'&pagado='+pagado+'&actualizar='+opcion,'Factura','','800','600','true');
+			}
+		  })
+		  
+		  
+		  document.getElementById("datos_compra").reset();
+		  
+		 
 		
 		 });
 		 function actualizar_precio()

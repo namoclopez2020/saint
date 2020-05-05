@@ -34,6 +34,20 @@ class Session {
     }
 
   }
+  function usar_configuracion (){
+    $db = new Mysqli_DB();
+    $consulta = "SELECT * FROM general_data LIMIT 1";
+    $query = find_by_sql($consulta);
+    foreach ($query as $datos) :
+      $_SESSION['moneda'] = $datos['moneda'];
+      $_SESSION['representacion'] = $datos['representacion'];
+      $_SESSION['sucursal_principal_id'] = $datos['sucursal'];
+      $_SESSION['impuesto'] = $datos['impuesto'];
+      $_SESSION['porcentaje_impuesto'] = $datos['porcentaje_impuesto'];
+
+    endforeach;
+
+  }
 
 
  

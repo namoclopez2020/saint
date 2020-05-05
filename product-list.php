@@ -15,7 +15,7 @@ require_once('includes/load.php');
  $all_producto =join_product_table($sucursal[0]);
  include('layouts/header.php');
  include('layouts/navigation.php');
-
+$moneda = $_SESSION['representacion'];
 ?>
 <div class="page">
      <?php include('layouts/nav_page.php')?>
@@ -40,6 +40,7 @@ require_once('includes/load.php');
                    <th>Stock</th>
                    <th>Categoria</th>
                    <th>Almacen</th>
+                   <th>Costos</th>
                    <th>Acciones</th>
                </thead>
                <tbody>
@@ -66,6 +67,9 @@ require_once('includes/load.php');
                     ?></td>
                     <td><?php echo $producto['categoria']?></td>
                     <td><?php echo $producto['nombre_almacen'] ?> </td>
+                    <td><?php echo "<b>COSTO ACTUAL : </b>".$moneda." ".$producto['costo_actual']."<br>".
+                                "<b>COSTO ANTERIOR : </b>".$moneda." ".$producto['costo_anterior']."<br>".
+                                "<b>COSTO PROMEDIO : </b>".$moneda." ".$producto['costo_promedio']?></td>
                     <td class="text-center">
                       <div class="btn-group">
                       <a class="btn btn-info" href="#" data-toggle="modal" data-target="#myModalmostrar" onclick="mostrar('<?php echo $producto['id_producto']?>','<?php echo urlencode($producto['nombre_producto']) ?>')"> &nbsp;&nbsp;+ info&nbsp;&nbsp;</a>

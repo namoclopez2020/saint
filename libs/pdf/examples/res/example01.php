@@ -223,12 +223,13 @@ while ($row=$db->fetch_array($sql))
 		if($usa_empaque){
 		 $unidades_totales = $cantidad_und+($cantidad_paq)*$fraccion;
 		 $costo_actual=(double)$costo_compra/(double)$unidades_totales;
-		 $costo_actual = dinero($costo_actual);
+		 
 		}
 		else{
-		$costo_actual = dinero((double)$costo_compra/(double)$cantidad_und);
+		$costo_actual = (double)$costo_compra/(double)$cantidad_und;
 		}
-		$costo_promedio =dinero(((double)$costo_anterior+(double)$costo_actual)/2);
+		$costo_promedio =((double)$costo_anterior+(double)$costo_actual)/2;
+		$costo_actual = dinero($costo_actual);
 		$actualizar="UPDATE products set costo_anterior='{$costo_anterior}' , costo_actual='{$costo_actual}' , costo_promedio='{$costo_promedio}' where id_producto='$id_producto'";
 		$db->query($actualizar);
 	}
