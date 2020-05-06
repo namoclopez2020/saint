@@ -39,7 +39,8 @@
     <script src="./libs/vendor/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="./libs/vendor/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
     -->
-
+  <!-- quicksearch-->
+   <script src="./libs/vendor/quicksearch/jquery.quicksearch.js"></script>
     <!--datatables probar -->
     <script src="./libs/vendor/datatable-responsive-input/datatables.min.js"></script>
     <script src="./libs/js/tables-datatable.js"></script>

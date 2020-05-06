@@ -16,18 +16,24 @@ if(isset($_POST['actualizar'])){
     $nombre_almacen =  remove_junk($db->escape($_POST['nombre_almacen']));
     $codigo_almacen =  remove_junk($db->escape($_POST['codigo_almacen']));
     $id_sucursal =  remove_junk($db->escape($_POST['sucursal_almacen']));
-$sql="SELECT * FROM almacen where nombre_almacen='{$nombre_almacen}' OR codigo_almacen='{$codigo_almacen}'";
+
+
+$sql="SELECT * FROM almacen where (nombre_almacen='{$nombre_almacen}' OR codigo_almacen='{$codigo_almacen}') AND id_almacen != {$id_almacen}";
 $res=$db->query($sql);
 if($db->affected_rows() > 0){
+    $session->msg('d','Los datos coinciden con otro almacen en uso');
     redirect('edit_almacen.php?id='.$id_almacen,false);
 }
 if(
+    
     $db->query("UPDATE almacen set nombre_almacen = '{$nombre_almacen}' , codigo_almacen='{$codigo_almacen}',
 id_sucursal='{$id_sucursal}' where id_almacen=$id_almacen
 ")
-){
+){  
+    $session->msg('s','Almacen actualizado correctamente');
     redirect('list-almacen.php',false);
 }else{
+    $session->msg('d','Actualizacion fallo');
     redirect('edit_almacen.php?id='.$id_almacen,false);
 }
 
@@ -39,7 +45,6 @@ id_sucursal='{$id_sucursal}' where id_almacen=$id_almacen
      redirect('list-almacen.php');
  }
 
- //verificar si el almacen ya esta en uso
 
 
 
@@ -48,6 +53,18 @@ id_sucursal='{$id_sucursal}' where id_almacen=$id_almacen
  if($db->affected_rows() == 0){
     redirect('list-almacen.php',false);
  }
+ //ver si el almacen ya esta en produccion
+$verificar_query ="SELECT count(id_producto) as contar from products where id_almacen={$id_almacen}";
+$verificar=find_by_sql($verificar_query);
+foreach ($verificar as $count) :
+    $en_uso = ($count['contar'] > 0 ) ? true : false;
+endforeach;
+
+if($en_uso){
+    $session->msg('d','El almacen ya esta en produccion');
+    redirect('list-almacen.php',false);
+}
+
  $all_almacen=$datos;
  $all_sucursales = find_all('sucursales');
  include('layouts/header.php');
@@ -59,7 +76,7 @@ id_sucursal='{$id_sucursal}' where id_almacen=$id_almacen
     <div class="row">
         <div class="col-12 col-md-7 col-lg-6 mx-auto">
             <div class="card">
-                <div class="card-header"><text class="h3">Crear almacen</text></div>
+                <div class="card-header"><text class="h3">Editar Almacen</text></div>
                 <div class="card-body">
                 <form  method="post">
                     <?php foreach ($all_almacen as $almacen) {?>

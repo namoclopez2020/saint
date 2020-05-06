@@ -200,7 +200,7 @@
         <div class="card-body mx-auto">
         <div class="form-group">
                     
-                      <select id="multiselect1" multiple="multiple" name="proveedor[]">
+                      <select id="multiselect1"  multiple="multiple" name="proveedor[]">
                         <?php foreach ($all_providers as $pro) : ?>
                         <option value="<?php echo $pro['idproveedor']?>" ><?php echo $pro['nombre']?></option>
                         <?php endforeach?> 
