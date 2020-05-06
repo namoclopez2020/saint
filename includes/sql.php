@@ -438,7 +438,7 @@ return $sucursal;
    if($lote != ""){
     $sql.="and det.id_detalle=$lote ";
     } 
-    $sql.="GROUP BY s.serial_number ";
+    //$sql.="GROUP BY s.serial_number ";
     return find_by_sql($sql);
   }
   function existe_configuracion() {
