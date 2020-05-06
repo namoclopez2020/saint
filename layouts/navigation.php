@@ -24,8 +24,8 @@
             </li>
             <li><a href="#provDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-form"></i>Proveedores</a>
               <ul id="provDropdown" class="collapse list-unstyled ">
-                <li><a href="form-almacen.php">Agregar proveedor</a></li>
-                <li><a href="list-almacen.php">Registro de proveedores</a></li>
+                <li><a href="form-provider.php">Agregar proveedor</a></li>
+                <li><a href="list-provider.php">Registro de proveedores</a></li>
                 
              
               </ul>
