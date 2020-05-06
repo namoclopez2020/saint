@@ -13,7 +13,7 @@
   $id_sucursal =  remove_junk($db->escape($_POST['sucursal_almacen']));
 
 
-  $sql = "INSERT INTO ALMACEN (nombre_almacen,codigo_almacen,id_sucursal) VALUES ('{$nombre_almacen}','{$codigo_almacen}','{$id_sucursal}')";
+  $sql = "INSERT INTO almacen (nombre_almacen,codigo_almacen,id_sucursal) VALUES ('{$nombre_almacen}','{$codigo_almacen}','{$id_sucursal}')";
   if($db->query($sql)){
     redirect('list-almacen.php', false);
   }
