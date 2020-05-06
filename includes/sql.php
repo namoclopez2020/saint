@@ -386,7 +386,7 @@ return $sucursal;
     global $db;
     $numero_compra = remove_junk($db->escape($numero_compra));
     $sql = "SELECT p.id,u.name,p.monto_pagado,p.fecha_pago,p.metodo_pago FROM pagos as p ";
-    $sql.="INNER JOIN users as u ON P.id_usuario = u.id WHERE p.num_compra = $numero_compra ";
+    $sql.="INNER JOIN users as u ON p.id_usuario = u.id WHERE p.num_compra = $numero_compra ";
     $sql.="GROUP BY p.id ";
     return find_by_sql($sql);
   }
