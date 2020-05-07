@@ -10,7 +10,7 @@
                    <div class="input-group">
 					   
 
-                     <input type="text" class="form-control" value="18" name="impuesto" placeholder="Impuesto agregado" required>
+                     <input type="number" class="form-control" value="18" name="impuesto" placeholder="Impuesto agregado" required>
                     
                   </div>
                  </div>
@@ -41,10 +41,8 @@ if($_POST['empaque'] == "1"){
 				     <div class="col-md-4">
                    <div class="input-group">
 					   
-                     <span class="input-group-addon">
-                       <i class="glyphicon glyphicon-usd"></i>
-                     </span>
-                     <input type="text" class="form-control" name="fraccion" placeholder="Cantidad" required>
+                     
+                     <input type="number" class="form-control" name="fraccion" placeholder="Cantidad" required>
                     
                   </div>
                  </div>

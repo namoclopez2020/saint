@@ -38,6 +38,7 @@ $moneda = $_SESSION['representacion'];
                    <th>Unidad de medida</th>
                    <th>Fraccion</th>
                    <th>Stock</th>
+                   <th>Stock minimo</th>
                    <th>Categoria</th>
                    <th>Almacen</th>
                    <th>Costos</th>
@@ -65,6 +66,12 @@ $moneda = $_SESSION['representacion'];
                         echo "Sin compras registradas";
                     }
                     ?></td>
+                    <td>
+                    <?php 
+                    echo $producto['min_paq']." ".$producto['medida_paq']." <br> ".$producto['min_und']." ".$producto['medida_und'];
+                    ?>
+                    
+                    </td>
                     <td><?php echo $producto['categoria']?></td>
                     <td><?php echo $producto['nombre_almacen'] ?> </td>
                     <td><?php echo "<b>COSTO ACTUAL : </b>".$moneda." ".$producto['costo_actual']."<br>".

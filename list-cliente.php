@@ -64,7 +64,7 @@ $moneda = $_SESSION['representacion'];
                         <a href="edit-cliente.php?id=<?php echo (int)$cliente['id_cliente'];?>"  class="btn  btn-warning mr-1"  >
                           <i class="fa fa-edit"></i>
                         </a>
-                        <a href="delete_cliente.php?id=<?php echo (int)$cliente['id_cliente'];?>"  class="btn  btn-danger"  >
+                        <a href="delete-cliente.php?id=<?php echo (int)$cliente['id_cliente'];?>"  class="btn  btn-danger"  >
                           <span class=" fa fa-trash"></span>
                         </a>
                       </div>

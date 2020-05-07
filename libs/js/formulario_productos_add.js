@@ -78,6 +78,7 @@ function load1(){
 		
 		$( "#agregar_productos" ).submit(function( event ) {
 			event.preventDefault();
+			
 		  
 		 var parametros = $(this).serialize();
 			 $.ajax({
@@ -89,6 +90,7 @@ function load1(){
 					  },
 					success: function(datos){
 					//$("#resu").html(datos);
+					if(datos == true){
 					document.getElementById("agregar_productos").reset();
 					$(function () {
 
@@ -106,7 +108,11 @@ function load1(){
 						
 						
 						});
-				
+					}
+					else{
+
+						display_msg('No puede tener negativos','error');
+					}
 				  }
 			});
 		

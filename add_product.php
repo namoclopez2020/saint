@@ -34,8 +34,8 @@
         <div class="card-body" id="padre">
          <div class="col-md-12">
            <!-- para pruebas -->
-        <!--  <form method="post" action="ajax/agregar_nuevo_producto.php" id="agregar_producto" name="agregar_producto" method="POST"  class="clearfix" >-->
-          <form method="post" id="agregar_productos" name="agregar_productos" method="POST"  class="clearfix" >  
+      <!-- <form method="post" action="ajax/agregar_nuevo_producto.php" id="agregar_producto" name="agregar_producto" method="POST"  class="clearfix" >-->
+        <form method="post" id="agregar_productos" name="agregar_productos" method="POST"  class="clearfix" >  
           <div class="form-group">
                 <div class="input-group">
                   <span class="input-group-addon">
@@ -145,13 +145,13 @@
           <text class="h4">Costos</text>
           </div>
           <div class="form-group">
-  <input type="text" class="form-control" name="costo_anterior"  placeholder="Costo anterior" required>
+  <input type="number" class="form-control" name="costo_anterior"  placeholder="Costo anterior" required>
          </div>
          <div class="form-group">
-  <input type="text" class="form-control" name="costo_actual"  placeholder="Costo actual" required>
+  <input type="number" class="form-control" name="costo_actual"  placeholder="Costo actual" required>
          </div>
          <div class="form-group">
-  <input type="text" class="form-control" name="costo_promedio" placeholder="costo promedio" required>
+  <input type="number" class="form-control" name="costo_promedio" placeholder="costo promedio" required>
          </div>
     
         
@@ -166,17 +166,39 @@
       </div>
       <div class="form-group">
         
-        <input type="text" name="precio1" class="form-control" placeholder="Precio 1">
+        <input type="number" name="precio1" class="form-control" placeholder="Precio 1">
       </div>
       <div class="form-group">
         
-      <input type="text" name="precio2" class="form-control" placeholder="Precio 2">
+      <input type="number" name="precio2" class="form-control" placeholder="Precio 2">
       </div>
-      <div class="form-group " style="margin-bottom:36px">
+      <div class="form-group" style="">
        
-      <input type="text" name="precio3" class="form-control" placeholder="Precio 3">
+      <input type="number" name="precio3" class="form-control" placeholder="Precio 3">
       </div>
      </div>
+          </div>
+          <div class="row">
+          <div class="col-12">
+         <div class="form-group">
+         <label for="codigo_almacen" >Stock minimo:</label>
+         <div class="row">
+         <div class="col-3">
+         <input type="number" name="min_paq" class="form-control form-control-sm" >
+         </div>
+         <div class="col-3">
+         <label for="" class="form-control-label">PAQ</label>
+         </div>
+            <div class="col-3">
+            <input type="number" name="min_und" class="form-control form-control-sm" required>
+            </div>
+            <div class="col-3">
+            <label for="" class="form-control-label">UND</label>
+            </div>
+         </div>
+            
+         </div>
+          </div>
           </div>
         
         </div>

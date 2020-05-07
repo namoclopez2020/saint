@@ -39,6 +39,18 @@ function validate_fields($var){
     }
   }
 }
+function validar_negativos ($var){
+  global $errors;
+  $errors = 0;
+  foreach($var as $field){
+    $val = remove_junk($_POST[$field]);
+    if(isset($val) && $val < 0 ){
+      $errors ++;
+      
+    }
+  }
+  return $errors;
+}
 //formatea cantidad en dinero
 function dinero($dinero){
   return number_format(number_format($dinero,2,'.',''),2);
