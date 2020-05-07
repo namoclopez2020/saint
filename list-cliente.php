@@ -8,12 +8,12 @@ require_once('includes/load.php');
  existe_por_lo_menos_una_sucursal();
  esta_configurado();
  existe_sucursal_seleccionada();
-   $sucursal =usar_sucursal();
+ $sucursal =usar_sucursal();
    
  $all_clientes=find_all_clientes();
  include('layouts/header.php');
  include('layouts/navigation.php');
-
+$moneda = $_SESSION['representacion'];
 ?>
 <div class="page">
      <?php include('layouts/nav_page.php')?>
@@ -31,11 +31,13 @@ require_once('includes/load.php');
                    <th>Teléfono</th>
                    <th>Dirección</th>
                    <th>Email</th>
-                   <th>Documneto</th>
+                   <th>Documento</th>
                    <th>Nro de documento</th>
                    <th>Fecha Agregado</th>
                    <th>Tipo de cliente</th>
                    <th>Pedidos</th>
+                   <th>Linea de crédito</th>
+                   <th>Crédito restante</th>
                    <th>Acciones</th>
                </thead>
                <tbody>
@@ -55,9 +57,11 @@ require_once('includes/load.php');
                     <td><?php echo read_date($cliente['date_added'])?></td>
                     <td><?php echo $cliente['grupo_cliente']?></td>
                     <td><?php echo $cliente['pedidos_cliente']?></td>
+                    <td><?php echo $moneda." ". dinero($cliente['credito_max'])?></td>
+                    <td><?php echo $moneda." ".dinero($cliente['credito_restante'])?></td>
                     <td class="text-center">
                       <div class="btn-group">
-                        <a href="edit_cliente.php?id=<?php echo (int)$cliente['id_cliente'];?>"  class="btn  btn-warning mr-1"  >
+                        <a href="edit-cliente.php?id=<?php echo (int)$cliente['id_cliente'];?>"  class="btn  btn-warning mr-1"  >
                           <i class="fa fa-edit"></i>
                         </a>
                         <a href="delete_cliente.php?id=<?php echo (int)$cliente['id_cliente'];?>"  class="btn  btn-danger"  >

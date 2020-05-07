@@ -57,6 +57,10 @@ esta_configurado();
                    <input type="text" name="pedidos_cliente" class="form-control form-control-sm">
                 </div>
                 <div class="form-group">
+                    <label for="codigo_almacen" >Crédito:</label>
+                   <input type="number" name="credito_cliente" class="form-control form-control-sm" value="0">
+                </div>
+                <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block" >Guardar</button>
                 </div>
             </form>

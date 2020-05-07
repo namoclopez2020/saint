@@ -10,7 +10,7 @@
    existe_sucursal_seleccionada();
    $sucursal =usar_sucursal();
    esta_configurado();
-   
+   $session->usar_configuracion();
 
   include('layouts/header.php');
   include('layouts/navigation.php');

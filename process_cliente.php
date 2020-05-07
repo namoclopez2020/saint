@@ -16,6 +16,7 @@
   $fecha = make_date();
   $grupo_cliente = "Ordinario";
   $pedidos_cliente = remove_junk($db->escape($_POST['pedidos_cliente']));
+  $credito = remove_junk($db->escape($_POST['credito_cliente']));
 
   if($tipo_documento != 5){
       $numero_documento = remove_junk($db->escape($_POST['numero_documento']));
@@ -36,8 +37,8 @@
       redirect('form-cliente.php',false);
   }
 
-  $sql = "INSERT INTO cliente (nombre_cliente,telefono_cliente,direccion_cliente,email_cliente,tipo_documento,nro_documento,date_added,grupo_cliente,pedidos_cliente) ";
-  $sql .="VALUES ('{$nombre_cliente}','{$telefono_cliente}','{$direccion_cliente}','{$email_cliente}','{$tipo_documento}','{$numero_documento}','{$fecha}','{$grupo_cliente}','{$pedidos_cliente}')";
+  $sql = "INSERT INTO cliente (nombre_cliente,telefono_cliente,direccion_cliente,email_cliente,tipo_documento,nro_documento,date_added,grupo_cliente,pedidos_cliente,credito_max,credito_restante) ";
+  $sql .="VALUES ('{$nombre_cliente}','{$telefono_cliente}','{$direccion_cliente}','{$email_cliente}','{$tipo_documento}','{$numero_documento}','{$fecha}','{$grupo_cliente}','{$pedidos_cliente}','{$credito}','{$credito}')";
   if($db->query($sql)){
       $session->msg('s','Cliente agregado correctamente');
       redirect('list-cliente.php', false);

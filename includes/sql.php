@@ -614,7 +614,7 @@ function find_all_product_info_by_title_1($title){
 
  function find_all_clientes(){
    global $db;
-   $sql="SELECT c.id_cliente,tip.documento,c.nombre_cliente,c.telefono_cliente,c.direccion_cliente,c.email_cliente,c.nro_documento,c.date_added,";
+   $sql="SELECT c.credito_max,c.credito_restante,c.id_cliente,tip.documento,c.nombre_cliente,c.telefono_cliente,c.direccion_cliente,c.email_cliente,c.nro_documento,c.date_added,";
    $sql.="c.grupo_cliente,c.pedidos_cliente FROM cliente as c INNER JOIN tipo_documento as tip ON tip.id=c.tipo_documento";
    return find_by_sql($sql);
  }
