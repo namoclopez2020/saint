@@ -76,7 +76,7 @@ function find_by_correlativo($table,$id)
             return null;
      }
 }
-function find_by_id1($table,$id)
+function find_by_id_proveedor($table,$id)
 {
   global $db;
   $id = (int)$id;

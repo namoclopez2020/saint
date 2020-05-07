@@ -49,7 +49,7 @@ require_once('includes/load.php');
                     <td><?php echo $provider['direccion']?></td>
                     <td class="text-center">
                       <div class="btn-group">
-                        <a href="edit_provider.php?id=<?php echo (int)$provider['idproveedor'];?>"  class="btn  btn-warning"  >
+                        <a href="edit_provider.php?id=<?php echo (int)$provider['idproveedor'];?>"  class="btn  btn-warning mr-1"  >
                           <i class="fa fa-edit"></i>
                         </a>
                         <a href="delete_provider.php?id=<?php echo (int)$provider['idproveedor'];?>"  class="btn  btn-danger"  >
