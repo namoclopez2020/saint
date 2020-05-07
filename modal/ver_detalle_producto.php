@@ -18,7 +18,7 @@
                         <div class="widget-body">
                             <div class="modal-body datagrid table-responsive" >
                                 <center><div id="cargar_reporte" >
-                                        <img src="../../../img/ps_gif/PS_BN.gif"/>
+                                        <img src="./libs/vendor/lightbox2/images/loading.gif"/>
                                         Espere!!! Cargando datos...
                                     </div></center>
  

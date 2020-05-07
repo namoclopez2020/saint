@@ -30,6 +30,14 @@
              
               </ul>
             </li>
+            <li><a href="#clientDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-user"></i>Clientes</a>
+              <ul id="clientDropdown" class="collapse list-unstyled ">
+                <li><a href="form-cliente.php">Agregar cliente</a></li>
+                <li><a href="list-cliente.php">Registro de clientes</a></li>
+                
+             
+              </ul>
+            </li>
             
             <li><a href="#chartsDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-bar-chart"></i>Instancias</a>
               <ul id="chartsDropdown" class="collapse list-unstyled ">

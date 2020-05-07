@@ -37,8 +37,7 @@ if(
     
     $db->query("UPDATE proveedor set nombre = '{$nombre_proveedor}' , RUC='{$ruc_proveedor}',
     direccion='{$direccion_proveedor}' , representante = '{$contacto_proveedor}',
-    Telefono='{$telefono_proveedor}' where idproveedor=$id_proveedor
-")
+    Telefono='{$telefono_proveedor}' where idproveedor=$id_proveedor")
 ){  
     $session->msg('s','Proveedor actualizado correctamente');
     redirect('list-provider.php',false);

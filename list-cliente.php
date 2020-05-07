@@ -10,7 +10,7 @@ require_once('includes/load.php');
  existe_sucursal_seleccionada();
    $sucursal =usar_sucursal();
    
- $all_almacen=find_all_almacen($sucursal[0]);
+ $all_clientes=find_all_clientes();
  include('layouts/header.php');
  include('layouts/navigation.php');
 
@@ -21,34 +21,46 @@ require_once('includes/load.php');
    <div class="row">
        <div class="col-11 col-md-8 col-lg-10 mx-auto">
           <div class="card">
-              <div class="card-header text-primary h3">Almacenes</div>
+              <div class="card-header text-primary h3">Lista de clientes</div>
               <div class="card-body">
              <div class="table-responsive">
              <table class="table table-hover" id="myTable" style="width:100%">
                <thead class="bg-primary text-light">
                    <th>#</th>
                    <th>Nombre</th>
-                   <th>Codigo</th>
-                   <th>sucursal</th>
+                   <th>Teléfono</th>
+                   <th>Dirección</th>
+                   <th>Email</th>
+                   <th>Documneto</th>
+                   <th>Nro de documento</th>
+                   <th>Fecha Agregado</th>
+                   <th>Tipo de cliente</th>
+                   <th>Pedidos</th>
                    <th>Acciones</th>
                </thead>
                <tbody>
                   <?php 
-                  $cont = 0;
-                  foreach ($all_almacen as $almacen){
-                     $cont++;
+                  
+                  foreach ($all_clientes as $cliente){
+                    
                      ?>
                      <tr>
-                       <td><?php echo $cont?></td>
-                    <td><?php echo $almacen['nombre_almacen']?></td>
-                    <td><?php echo $almacen['codigo_almacen']?></td>
-                    <td><?php echo $almacen['sucursal']?></td>
+                       <td><?php echo count_id()?></td>
+                    <td><?php echo $cliente['nombre_cliente']?></td>
+                    <td><?php echo $cliente['telefono_cliente']?></td>
+                    <td><?php echo $cliente['direccion_cliente']?></td>
+                    <td><?php echo $cliente['email_cliente']?></td>
+                    <td><?php echo $cliente['documento']?></td>
+                    <td><?php echo $cliente['nro_documento']?></td>
+                    <td><?php echo read_date($cliente['date_added'])?></td>
+                    <td><?php echo $cliente['grupo_cliente']?></td>
+                    <td><?php echo $cliente['pedidos_cliente']?></td>
                     <td class="text-center">
                       <div class="btn-group">
-                        <a href="edit_almacen.php?id=<?php echo (int)$almacen['id_almacen'];?>"  class="btn  btn-warning mr-1"  >
+                        <a href="edit_cliente.php?id=<?php echo (int)$cliente['id_cliente'];?>"  class="btn  btn-warning mr-1"  >
                           <i class="fa fa-edit"></i>
                         </a>
-                        <a href="delete_almacen.php?id=<?php echo (int)$almacen['id_almacen'];?>"  class="btn  btn-danger"  >
+                        <a href="delete_cliente.php?id=<?php echo (int)$cliente['id_cliente'];?>"  class="btn  btn-danger"  >
                           <span class=" fa fa-trash"></span>
                         </a>
                       </div>

@@ -88,12 +88,24 @@ function find_by_id1($table,$id)
             return null;
      }
 }
-function find_by_id2($table,$id)
+function find_by_id_cliente($table,$id)
 {
   global $db;
   $id = (int)$id;
     if(tableExists($table)){
           $sql = $db->query("SELECT * FROM {$db->escape($table)} WHERE id_cliente='{$db->escape($id)}' ");
+          if($result = $db->fetch_assoc($sql))
+            return $result;
+          else
+            return null;
+     }
+}
+function find_by_id_almacen($table,$id)
+{
+  global $db;
+  $id = (int)$id;
+    if(tableExists($table)){
+          $sql = $db->query("SELECT * FROM {$db->escape($table)} WHERE id_almacen='{$db->escape($id)}' ");
           if($result = $db->fetch_assoc($sql))
             return $result;
           else
@@ -115,6 +127,20 @@ function delete_by_id($table,$id)
     return ($db->affected_rows() === 1) ? true : false;
    }
 }
+
+function delete_by_campo($table,$id,$campo)
+{
+  global $db;
+  if(tableExists($table))
+   {
+    $sql = "DELETE FROM ".$db->escape($table);
+    $sql .= " WHERE ".$db->escape($campo)."=". $db->escape($id);
+    $sql .= " LIMIT 1";
+    $db->query($sql);
+    return ($db->affected_rows() === 1) ? true : false;
+   }
+}
+
 function delete_by_egreso($table,$id)
 {
   global $db;
@@ -585,6 +611,18 @@ function find_all_product_info_by_title_1($title){
    // $sql .=" LIMIT 1";
     return find_by_sql($sql);
   }
+
+ function find_all_clientes(){
+   global $db;
+   $sql="SELECT c.id_cliente,tip.documento,c.nombre_cliente,c.telefono_cliente,c.direccion_cliente,c.email_cliente,c.nro_documento,c.date_added,";
+   $sql.="c.grupo_cliente,c.pedidos_cliente FROM cliente as c INNER JOIN tipo_documento as tip ON tip.id=c.tipo_documento";
+   return find_by_sql($sql);
+ }
+ function find_all_docs(){
+   global $db;
+   $sql="SELECT * FROM tipo_documento";
+   return find_by_sql($sql);
+ } 
 
 function find_all_provider(){
     global $db;
