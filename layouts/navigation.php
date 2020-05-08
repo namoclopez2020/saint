@@ -58,6 +58,13 @@
                 <li><a href="cuentas_por_pagar.php">Cuentas por pagar</a></li>
               </ul>
             </li>
+            <li><a href="#ventasDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cart-plus"></i>Ventas </a>
+              <ul id="ventasDropdown" class="collapse list-unstyled ">
+                <li><a href="nueva_venta.php">Nueva venta</a></li>
+                <li><a href="ventas.php">Registro de Ventas</a></li>
+                <li><a href="cuentas_por_cobrar.php">Cuentas por cobrar</a></li>
+              </ul>
+            </li>
            
           <!--  <li> <a href="#"> <i class="icon-mail"></i>Demo
                 <div class="badge badge-warning">6 New</div></a></li>-->

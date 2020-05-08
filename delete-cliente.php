@@ -17,7 +17,7 @@ if(isset($_GET['id'])){
       redirect('list-provider.php');
     } 
     //ver si cliente esta en uso 
-    $verificar_query ="SELECT count(id_factura) as contar from facturas where  id_cliente={$cliente['id_cliente']}";
+    $verificar_query ="SELECT count(id) as contar from ventas where  id_cliente={$cliente['id_cliente']}";
 $verificar=find_by_sql($verificar_query);
 foreach ($verificar as $count) :
     $en_uso = ($count['contar'] > 0 ) ? true : false;

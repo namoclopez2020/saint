@@ -14,7 +14,7 @@ $page_title = 'Nueva factura';
    foreach($general as $datos){
 	   $moneda = $datos['representacion'];
    }
-   
+   $all_providers= find_all('proveedor');
  $all_producto =join_product_table($sucursal[0]);
  
   include('layouts/header.php');
@@ -27,38 +27,35 @@ $page_title = 'Nueva factura';
  <div class="container mt-4">
  <div class="row">
  <div class="col-11 mx-auto mb-2">
- <text class="text-secondary">*Los productos que usan serial estaran disponibles en venta cuando se agreguen todos los numero de serie despues de la compra</text>
+ 
  </div>
  </div>
    <div class="container-fluid ">
 	  <div class="card">
-		  <div class="card-header"><i class="fa fa-edit">Nueva Compra</i></div>
+		  <div class="card-header"><i class="fa fa-plus"> Nueva venta</i></div>
 		  <div class="card-body">
 		  <form id="datos_compra" method="POST" >
 			<div class="form-row">
 			<div class="form-group col-md-4 form-group-typeahead">
-			  <label for="inputCity">Proveedor</label>
-			  <input type="text" class="form-control input-sm" id="nombre_proveedor" placeholder="Selecciona un proveedor" >
-					  <input id="id_proveedor" type='hidden'>
+			  <label for="inputCity">Cliente</label>
+			  <input type="text" class="form-control input-sm" id="nombre_cliente" placeholder="Selecciona un cliente" >
+					  <input id="id_cliente" type='hidden'>
      		 
 			 
 			</div>
 			<div class="form-group col-md-4">
-     		 <label for="inputCity">RUC</label>
+     		 <label for="inputCity">Teléfono</label>
 		
-			<input type="text" class="form-control input-sm" id="RUC" placeholder="RUC" readonly>
+			<input type="text" class="form-control input-sm" id="tel" placeholder="Telefono" readonly>
 			
 			</div>
 			<div class="form-group col-md-4">
-     		 <label for="inputCity">Telefono</label>
-			  <input type="text" class="form-control input-sm" id="tel" placeholder="tel" readonly>
+     		 <label for="inputCity">Email</label>
+			  <input type="text" class="form-control input-sm" id="email" placeholder="Email" readonly>
     		</div>	
 			</div>
 			<div class="form-row">
-			<div class="form-group col-md-4">
-                      <label class="form-control-label">Fecha</label>
-                      <input type="text" id="fecha" value="" class="form-control input-datepicker">
-			</div>
+			
 			<div class="form-group col-md-2">
 			<label class="form-control-label">Pago</label>
 							
@@ -72,7 +69,7 @@ $page_title = 'Nueva factura';
 			</div>
 			<div class="form-group col-md-2">
 			<label for="email" class="form-control-label">Tipo de pago</label>
-							
+		
 								<select class='form-control input-sm' id="tipo_pago" onchange="load()">
 									<option value="1">Total</option>
 									<option value="2">Parcial</option>
@@ -91,7 +88,7 @@ $page_title = 'Nueva factura';
 				<div class="pull-right">
 						
 						<a href="add_provider.php" class="btn btn-secondary " >
-						 <span class="fa fa-user"></span> Nuevo proveedor
+						 <span class="fa fa-user"></span> Nuevo cliente
 						</a>
 					<!--	<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal">
 						 <span class="glyphicon glyphicon-ing"></span> Agregar productos
@@ -125,7 +122,8 @@ $page_title = 'Nueva factura';
 					<th>Medidas</th>
 					<th>Es Serial</th>
 					<th><span class="30%">Cant.</span></th>
-					<th><span class="">Costo</span></th>
+					<th><span class="">Precio</span></th>
+					<th><span class="">Precios</span></th>
 					<th class='text-center' style="width: 36px;">Agregar</th>
 					</tr>	
 							</thead>
@@ -136,7 +134,10 @@ $page_title = 'Nueva factura';
                      $cont++;
                      ?>
                      <tr>
-					 <td><?php echo $producto['codigo_producto']?></td>
+					 <td><?php echo $producto['codigo_producto']?>
+					 <input type="hidden" value="<?php echo $producto['es_serial']?>" id="es_serial_<?php echo (int)$producto['id_producto']?>">
+					 
+					 </td>
                     <td><?php echo $producto['nombre_producto']?></td>
 					<td><?php echo $producto['categoria']?></td>
 					<td><?php  if($producto['stock_paq']!=NULL || $producto['stock_und']!=NULL){
@@ -154,6 +155,7 @@ $page_title = 'Nueva factura';
 					
 					<?php if($producto['usa_empaque']){?>
 					<div class="form-group row">
+					
 					<input type="number" class="form-control form-control-sm col-2 col-lg-2"   id="cantidad_paq_<?php echo (int)$producto['id_producto']; ?>"  value="0" >
 					 <span class="col-4 col-lg-2"><?php echo $producto['medida_paq']?></span>
 					 <input type="number" class="form-control form-control-sm col-2 col-lg-2"   id="cantidad_und_<?php echo (int)$producto['id_producto']; ?>"  value="0" >
@@ -173,9 +175,17 @@ $page_title = 'Nueva factura';
 				
 
 					</td>
+					
 					<td><input type="number" class="form-control form-control-sm col-5" id="costo_prod_<?php echo $producto['id_producto']?>"  ></td>
 					<td>
-					<a class='btn btn-info'href="#" onclick="agregar('<?php echo (int)$producto['id_producto'] ?>')"><i class="fa fa-plus"></i></a>
+					<?php echo $moneda." ".$producto['precio1']."<br>".
+								$moneda." ".$producto['precio2']."<br>".
+								$moneda." ".$producto['precio3'];
+						 ?>
+					</td>
+					
+					<td>
+					<a class='btn btn-info' href="#" onclick="agregar('<?php echo (int)$producto['id_producto'] ?>')"><i class="fa fa-plus"></i></a>
 					</td>
                    
                   </tr>
@@ -203,13 +213,13 @@ $page_title = 'Nueva factura';
 	   </div>
  
    </div>
-   
+   <?php include('modal/ver_detalle_producto.php')?>
 	
 	
 		
 	<?php include_once('layouts/footer.php'); ?>
 	<script type="text/javascript" src="./libs/js/VentanaCentrada.js"></script>
-	<script src="./libs/js/nueva_compra.js"></script>
+	<script src="./libs/js/nueva_venta.js"></script>
 
 	
     <script>
@@ -232,37 +242,36 @@ $("#loader2").fadeIn('slow');
 	})
 }
 
+$(document).ready(function() {
 
-
-	$(document).ready(function() {
-
-		$('#nombre_proveedor').autocomplete({
-			source: function(request, response){
-				$.ajax({
-					url:"./ajax/autocomplete/proveedores.php",
-					dataType:"json",
-					data:{q:request.term},
-					success: function(data){
-						response(data);
-					}
-
-				});
-			},
-			minLength: 1,
-			select: function(event,ui){
-				event.preventDefault();
-								$('#id_proveedor').val(ui.item.id_proveedor);
-								$('#nombre_proveedor').val(ui.item.nombre_empresa);
-								$('#tel').val(ui.item.telefono);
-								$('#RUC').val(ui.item.ruc);
-																
-          
+$('#nombre_cliente').autocomplete({
+	source: function(request, response){
+		$.ajax({
+			url:"./ajax/autocomplete/clientes.php",
+			dataType:"json",
+			data:{q:request.term},
+			success: function(data){
+				response(data);
 			}
-		});
-	
 
-	});
-	
+		});
+	},
+	minLength: 1,
+	select: function(event,ui){
+		event.preventDefault();
+						$('#id_cliente').val(ui.item.id_cliente);
+						$('#nombre_cliente').val(ui.item.nombre_cliente);
+						$('#tel').val(ui.item.telefono_cliente);
+						$('#email').val(ui.item.email_cliente);
+														
+  
+	}
+});
+
+
+});
+
+
 					
 	
 	</script>	

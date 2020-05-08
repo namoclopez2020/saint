@@ -227,6 +227,7 @@
                         <option value="<?php echo $pro['idproveedor']?>" ><?php echo $pro['nombre']?></option>
                         <?php endforeach?> 
                       </select>
+                    
                     </div>
         </div></div>
     

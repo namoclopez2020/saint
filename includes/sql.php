@@ -488,7 +488,7 @@ return $sucursal;
    /*--------------------------------------------------------------*/
   function join_product_table($id_sucursal){
      global $db;
-     $sql  =" SELECT p.min_paq,p.min_und,p.costo_anterior,p.costo_actual,p.costo_promedio,p.usa_empaque,p.id_producto,p.nombre_producto,codigo_producto,p.fecha_creado,p.es_serial,p.medida_paq,p.medida_und,p.fraccion,p.stock_paq,p.stock_und,c.name ";
+     $sql  =" SELECT p.precio1,p.precio2,p.precio3,p.min_paq,p.min_und,p.costo_anterior,p.costo_actual,p.costo_promedio,p.usa_empaque,p.id_producto,p.nombre_producto,codigo_producto,p.fecha_creado,p.es_serial,p.medida_paq,p.medida_und,p.fraccion,p.stock_paq,p.stock_und,c.name ";
     $sql  .=" AS categoria,a.nombre_almacen ";
     $sql  .=" FROM products p";
     $sql  .=" LEFT JOIN categories c ON c.id = p.categorie_id";
