@@ -517,6 +517,7 @@ return $sucursal;
    }
    function existe_serial($numero_serial){
      global $db;
+     $contar ="";
      $sql="SELECT count(id_serial) as contar,id_detalle_prod as lote FROM seriales where serial_number='{$numero_serial}' GROUP BY id_serial";
      $datos = find_by_sql($sql);
      foreach($datos as $serial){
@@ -542,6 +543,47 @@ return $sucursal;
     return find_by_sql($sql);
 
    }
+   function sobrepasa_stock_disponible($id_producto,$cantidad_paq,$cantidad_und){
+    global $db;
+    $sql="SELECT usa_empaque,stock_paq,stock_und,fraccion FROM products WHERE id_producto='".$id_producto."'";
+    $result=find_by_sql($sql);
+    foreach($result as $results){
+        $stock_paq=$results['stock_paq'];
+        $stock_und=$results['stock_und'];
+        $unidades_por_caja = $results['fraccion'];
+        $usa_empaque= $results['usa_empaque'];
+    }
+    if($usa_empaque):
+  
+      $total_und_BD = ($stock_paq*$unidades_por_caja)+$stock_und;
+      $total_und_funcion = ($cantidad_paq*$unidades_por_caja)+$cantidad_und;
+      
+      $restante = $total_und_BD - $total_und_funcion;
+    else:
+      
+      $restante=$stock_und - $cantidad_und;
+    endif;
+    
+    if($restante < 0):
+      return true;
+    else:
+      return false;
+    endif;
+    
+   }
+
+   function join_product_table_para_ventas($id_sucursal){
+    global $db;
+    $sql  =" SELECT p.precio1,p.precio2,p.precio3,p.min_paq,p.min_und,p.costo_anterior,p.costo_actual,p.costo_promedio,p.usa_empaque,p.id_producto,p.nombre_producto,codigo_producto,p.fecha_creado,p.es_serial,p.medida_paq,p.medida_und,p.fraccion,p.stock_paq,p.stock_und,c.name ";
+   $sql  .=" AS categoria,a.nombre_almacen ";
+   $sql  .=" FROM products p";
+   $sql  .=" LEFT JOIN categories c ON c.id = p.categorie_id";
+   $sql  .=" LEFT JOIN almacen as a ON p.id_almacen = a.id_almacen where a.id_sucursal=$id_sucursal";
+   $sql  .=" AND (stock_paq > 0 || stock_und > 0 ) && (stock_paq != '' || stock_und != '')";
+   $sql  .=" GROUP BY p.nombre_producto,p.id_producto ORDER BY p.id_producto DESC";
+   return find_by_sql($sql);
+
+  }
    
    
  function join_product_table_sucursal($sucursal){

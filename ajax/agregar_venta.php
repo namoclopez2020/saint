@@ -27,6 +27,12 @@ if (isset($_POST['cantidad_und']) && isset($_POST['costo_prod']) && isset($_POST
 $cantidad_und=remove_junk($db->escape($_POST['cantidad_und']));
 $cantidad_paq = remove_junk($db->escape( $_POST['cantidad_paq']));
 $precio_venta= remove_junk($db->escape($_POST['costo_prod']));	
+
+$sobrepasa = sobrepasa_stock_disponible($id,$cantidad_paq,$cantidad_und);
+if($sobrepasa){
+    echo 4;
+    exit();
+}
 		
 }
 $es_serial = remove_junk($db->escape($_POST['serializable']));

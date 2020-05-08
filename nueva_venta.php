@@ -15,7 +15,7 @@ $page_title = 'Nueva factura';
 	   $moneda = $datos['representacion'];
    }
    $all_providers= find_all('proveedor');
- $all_producto =join_product_table($sucursal[0]);
+ $all_producto =join_product_table_para_ventas($sucursal[0]);
  
   include('layouts/header.php');
   include('layouts/navigation.php');

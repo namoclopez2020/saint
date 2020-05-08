@@ -90,13 +90,21 @@
 							cargar();
 							return false;
 						}
+						
 						if(datos == 3){
 							display_msg('El serial no pertenece al producto seleccionado','error');
 							cargar();
 							return false;
-						}else{
+						}
+						if(datos == 4 ){
+							display_msg('La cantidad excede al stock disponible','error');
+							cargar();
+							return false;
+						}
+						else{
 							$("#resultados").html(datos);
 						}
+						
 						
 					}
 						}); 
@@ -118,7 +126,13 @@
                         $("#resultados").html("Mensaje: Cargando...");
                       },
                     success: function(datos){
-                    $("#resultados").html(datos);
+						if(datos == 4 ){
+							display_msg('La cantidad excede al stock disponible','error');
+							cargar();
+							return false;
+						}else{
+					$("#resultados").html(datos);
+						}
                     }
                         });   
             }
