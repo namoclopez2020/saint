@@ -517,7 +517,7 @@ return $sucursal;
    }
    function existe_serial($numero_serial){
      global $db;
-     $sql="SELECT count(id_serial) as contar,id_detalle_prod as lote FROM seriales where serial_number='{$numero_serial}'";
+     $sql="SELECT count(id_serial) as contar,id_detalle_prod as lote FROM seriales where serial_number='{$numero_serial}' GROUP BY id_serial";
      $datos = find_by_sql($sql);
      foreach($datos as $serial){
        $contar = $serial['contar'];

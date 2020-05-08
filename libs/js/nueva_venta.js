@@ -1,4 +1,9 @@
-	$(document).ready(() => {
+	$(document).ready(
+		
+			cargar()
+		
+	);
+	function cargar (){
 		var peticion = "";
 		$.ajax({
 			type: "GET",
@@ -11,12 +16,12 @@
 			$("#resultados").html(datos);
 			}
 				});
-	});
+	}
 	function agregar (id)
 	{
 		var costo_prod=document.getElementById('costo_prod_'+id).value;
         var cantidad_und=document.getElementById('cantidad_und_'+id).value;
-        var nombre ="hola";
+        
         var es_serial = document.getElementById('es_serial_'+id).value;
         
 		//Inicia validacion
@@ -77,17 +82,17 @@
 						
 						if(datos == false){
 							display_msg('serial no valido','error');
-							$("#resultados").html("");
+							cargar();
 							return false;
 						}
 						if(datos == 2){
 							display_msg('Lote no esta preparado','error');
-							$("#resultados").html("");
+							cargar();
 							return false;
 						}
 						if(datos == 3){
 							display_msg('El serial no pertenece al producto seleccionado','error');
-							$("#resultados").html("");
+							cargar();
 							return false;
 						}else{
 							$("#resultados").html(datos);
