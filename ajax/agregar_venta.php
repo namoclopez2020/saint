@@ -121,7 +121,8 @@ $delete=$db->query("DELETE FROM tmp WHERE id_tmp='".$id_tmp."'");
 		<tr>
 			<td class='text-center'><?php echo $codigo_producto;?></td>
 			<td class='text-center'><?php echo $cantidad_paq." ".$medida_paq." ".$cantidad_und." ".$medida_und;?></td>
-			<td><?php echo $nombre_producto."<br> S/N: <b>".$numero_serial ."<b>";?></td>
+            <td><?php echo $nombre_producto;
+            if($es_serial){echo "<br> S/N: <b>".$numero_serial ."<b>";}?></td>
 			<td class='text-right'><?php echo $icono." ".$costo_compra;?></td>
 			
 			<td class='text-center'><a href="#" onclick="eliminar('<?php echo $id_tmp ?>')"><i class="fa fa-trash"></i></a></td>
