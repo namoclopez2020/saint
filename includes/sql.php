@@ -495,9 +495,25 @@ return $sucursal;
    endforeach;
    return $estado;
    }
+   function find_serial_number($id_tmp){
+     global $db;
+     $sql = "SELECT stv.id_serial,s.serial_number FROM seriales_tmp_venta as stv INNER JOIN seriales as s ON ";
+     $sql .="s.id_serial = stv.id_serial WHERE stv.id_tmp_venta={$id_tmp}";
+     $datos = find_by_sql($sql);
+     foreach($datos as $data):
+      $serial_number = $data['serial_number'];
+     endforeach;
+     return $serial_number;
+
+   }
    function pertenece_a_producto($lote,$id_producto){
      global $db;
-     $sql="SELECT count()";
+   $sql="SELECT count(id_detalle) as cont FROM detalle_producto where id_detalle={$lote} AND id_producto={$id_producto}";
+   $datos = find_by_sql($sql);
+   foreach($datos as $data):
+    $contador = $data['cont'];
+   endforeach;
+   return $contador;
    }
    function existe_serial($numero_serial){
      global $db;

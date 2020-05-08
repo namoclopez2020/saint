@@ -201,7 +201,7 @@ $page_title = 'Nueva factura';
 	   
 		   <div class="col-12 col-md-6 col-lg-7">
 			   <div class="card">
-			   <div class="card-header bg-secondary text-light h3">Detalle de compra</div>
+			   <div class="card-header bg-secondary text-light h3">Detalle de venta</div>
 			   <div class="card-body" id="resultados"></div>
 			   </div>
 			  

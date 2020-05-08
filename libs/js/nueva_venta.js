@@ -1,8 +1,17 @@
-
-	async function serial () {
-       
-       
-       }
+	$(document).ready(() => {
+		var peticion = "";
+		$.ajax({
+			type: "GET",
+			url: "./ajax/agregar_venta.php",
+			data: "cargar="+peticion,
+			 beforeSend: function(objeto){
+				$("#resultados").html('<img src="./libs/vendor/lightbox2/images/loading.gif"/>');
+			  },
+			success: function(datos){
+			$("#resultados").html(datos);
+			}
+				});
+	});
 	function agregar (id)
 	{
 		var costo_prod=document.getElementById('costo_prod_'+id).value;
@@ -62,7 +71,7 @@
 					url: "./ajax/agregar_venta.php",
 					data: "id="+id+"&costo_prod="+costo_prod+"&cantidad_und="+cantidad_und+"&cantidad_paq="+cantidad_paq+"&serializable="+es_serial+"&serial="+numero_serial,
 					 beforeSend: function(objeto){
-						$("#resultados").html("Mensaje: Cargando...");
+						$("#resultados").html(' <img src="./libs/vendor/lightbox2/images/loading.gif"/>');
 					  },
 					success: function(datos){
 						
@@ -75,6 +84,13 @@
 							display_msg('Lote no esta preparado','error');
 							$("#resultados").html("");
 							return false;
+						}
+						if(datos == 3){
+							display_msg('El serial no pertenece al producto seleccionado','error');
+							$("#resultados").html("");
+							return false;
+						}else{
+							$("#resultados").html(datos);
 						}
 						
 					}
@@ -92,7 +108,7 @@
                 $.ajax({
                     type: "POST",
                     url: "./ajax/agregar_venta.php",
-                    data: "id="+id+"&costo_prod="+costo_prod+"&cantidad_und="+cantidad_und+"&cantidad_paq="+cantidad_paq+"$serializable="+es_serial,
+                    data: "id="+id+"&costo_prod="+costo_prod+"&cantidad_und="+cantidad_und+"&cantidad_paq="+cantidad_paq+"&serializable="+es_serial,
                      beforeSend: function(objeto){
                         $("#resultados").html("Mensaje: Cargando...");
                       },
@@ -112,10 +128,10 @@
 			
 			$.ajax({
         type: "GET",
-        url: "./ajax/agregar_compra.php",
+        url: "./ajax/agregar_venta.php",
         data: "id="+id,
 		 beforeSend: function(objeto){
-			$("#resultados").html("Mensaje: Cargando...");
+			$("#resultados").html('<img src="./libs/vendor/lightbox2/images/loading.gif"/>');
 		  },
         success: function(datos){
 		$("#resultados").html(datos);
