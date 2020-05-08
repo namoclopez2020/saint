@@ -486,6 +486,34 @@ return $sucursal;
    /* Function for Finding all product name
    /* JOIN with categorie  and media database table
    /*--------------------------------------------------------------*/
+   function lote_vigente($lote){
+     global $db;
+   $sql="SELECT estado from detalle_producto where id_detalle={$lote} ";
+   $datos = find_by_sql($sql);
+   foreach($datos as $data):
+    $estado = $data['estado'];
+   endforeach;
+   return $estado;
+   }
+   function pertenece_a_producto($lote,$id_producto){
+     global $db;
+     $sql="SELECT count()";
+   }
+   function existe_serial($numero_serial){
+     global $db;
+     $sql="SELECT count(id_serial) as contar,id_detalle_prod as lote FROM seriales where serial_number='{$numero_serial}'";
+     $datos = find_by_sql($sql);
+     foreach($datos as $serial){
+       $contar = $serial['contar'];
+       $lote = $serial['lote'];
+     }
+     if($contar > 0){
+       return $lote;
+     }
+     else{
+       return "";
+     }
+   }
   function join_product_table($id_sucursal){
      global $db;
      $sql  =" SELECT p.precio1,p.precio2,p.precio3,p.min_paq,p.min_und,p.costo_anterior,p.costo_actual,p.costo_promedio,p.usa_empaque,p.id_producto,p.nombre_producto,codigo_producto,p.fecha_creado,p.es_serial,p.medida_paq,p.medida_und,p.fraccion,p.stock_paq,p.stock_und,c.name ";

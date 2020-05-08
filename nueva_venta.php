@@ -166,7 +166,7 @@ $page_title = 'Nueva factura';
 						 ?>
 						 <div class="form-group row">
 					
-					 <input type="number" class="form-control form-control-sm col-3 ml-3"   id="cantidad_und_<?php echo (int)$producto['id_producto']; ?>"  value="1" >
+					 <input type="number" class="form-control form-control-sm col-3 ml-3 " <?php echo ($producto['es_serial']) ? "readonly" : "" ?>  id="cantidad_und_<?php echo (int)$producto['id_producto']; ?>"  value="1" >
 					 <span class="col-4"><?php echo $producto['medida_und']?></span>
 					 </div>
 						 <?php 

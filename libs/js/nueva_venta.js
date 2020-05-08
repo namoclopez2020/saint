@@ -30,7 +30,7 @@
 		}
 		
 		
-		if (costo_prod == "")
+		if (costo_prod == "" || costo_prod <= 0)
 		{
             display_msg('El campo costo está vacio','error');
 			
@@ -54,17 +54,31 @@
               }).then(
                 (result) => { 
                  if(result.value){
-                    $.ajax({
-                        type: "POST",
-                        url: "./ajax/agregar_compra.php",
-                        data: "id="+id+"&costo_prod="+costo_prod+"&cantidad_und="+cantidad_und+"&cantidad_paq="+cantidad_paq,
-                         beforeSend: function(objeto){
-                            $("#resultados").html("Mensaje: Cargando...");
-                          },
-                        success: function(datos){
-                        $("#resultados").html(datos);
-                        }
-                            }); 
+					
+				 var numero_serial= result.value;
+				  
+				  $.ajax({
+					type: "POST",
+					url: "./ajax/agregar_venta.php",
+					data: "id="+id+"&costo_prod="+costo_prod+"&cantidad_und="+cantidad_und+"&cantidad_paq="+cantidad_paq+"&serializable="+es_serial+"&serial="+numero_serial,
+					 beforeSend: function(objeto){
+						$("#resultados").html("Mensaje: Cargando...");
+					  },
+					success: function(datos){
+						
+						if(datos == false){
+							display_msg('serial no valido','error');
+							$("#resultados").html("");
+							return false;
+						}
+						if(datos == 2){
+							display_msg('Lote no esta preparado','error');
+							$("#resultados").html("");
+							return false;
+						}
+						
+					}
+						}); 
                  }
                  else{
                      display_msg('debe ingresar numero de serial','error');
@@ -77,8 +91,8 @@
             else{
                 $.ajax({
                     type: "POST",
-                    url: "./ajax/agregar_compra.php",
-                    data: "id="+id+"&costo_prod="+costo_prod+"&cantidad_und="+cantidad_und+"&cantidad_paq="+cantidad_paq,
+                    url: "./ajax/agregar_venta.php",
+                    data: "id="+id+"&costo_prod="+costo_prod+"&cantidad_und="+cantidad_und+"&cantidad_paq="+cantidad_paq+"$serializable="+es_serial,
                      beforeSend: function(objeto){
                         $("#resultados").html("Mensaje: Cargando...");
                       },
