@@ -54,7 +54,7 @@ $ver ="SELECT count(id_cliente) as contar FROM cliente WHERE (nombre_cliente='{$
 //actualizar proveedor
 $actualizar= "UPDATE cliente set nombre_cliente = '{$nombre_cliente}', telefono_cliente = '{$telefono_cliente}' ,";
 $actualizar .="direccion_cliente = '{$direccion_cliente}', email_cliente = '{$email_cliente}', tipo_documento='{$tipo_doc}',";
-$actualizar .="nro_documento = '{$nro_documento}', credito_max = '{$credito_max}', credito_restante = '{$new_credito_restante}'";
+$actualizar .="nro_documento = '{$nro_documento}', credito_max = '{$credito_max}', credito_restante = '{$new_credito_restante}' where id_cliente={$id_cliente}";
 
 
 if($db->query($actualizar)){

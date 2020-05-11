@@ -434,6 +434,6 @@
       </footer>
     </div>
   <?php include('layouts/footer.php')?>
-    <script src="./libs/js/charts-home.js"></script>
+    <script src="./libs/js/charts-home.js"></script> 
   
  
